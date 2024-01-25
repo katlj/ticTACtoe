@@ -1,9 +1,9 @@
 import {useState} from "react";
 
-function Square() {
+function Square({value, onSquareClick}) {
   const [value, setValue] = useState(null);// null is the initial value
 
-  function handleClick() {
+  function handleClick(i) {
   // to handle the  value of the state, clicked-> we use X to remember it was clicked
     setValue("X");
   }
@@ -19,11 +19,18 @@ export default function Board() {//parent function
  //to go from JSX to react you use curly braces
  //adding the prop to a square component is adding the value = x
  //components use states to remember things
+ function handleClick(i) {
+    const nextSquares = squares.slice();
+    nextSquares[i]= "X";
+    setSquares(nextSquares);
+
+
+ }
   return (
   <>
   
   <div className = "board-row" >
-  <Square value = {squares[0]} />
+  <Square value = {squares[0]} onSquareClick={handleClick}/>
   <Square value = {squares[1]}/>
   <Square value = {squares[2]} />
   </div>
